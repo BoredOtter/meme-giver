@@ -10,14 +10,19 @@ def get_meme():
         #print(data)
 
         if('preview' in data):
+            #print("len:")
+            #print(len(data['preview']))
+
             if(len(data['preview']) > 3):
                 meme_large = data['preview'][3]
             else:
-                index = 2
-                while index >= 0:
-                    meme_large = data['preview'][index]
-                    index -= 1
-                    break  # Break the loop after finding the highest index
+                index=2
+                while(len(data['preview'])!=3 and index>=0):
+                    index-=1
+                #print(index)
+
+                #meme_large=data['preview'][index]
+          
         else:
             raise Exception("No proper data received")
 

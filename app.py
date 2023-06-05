@@ -8,7 +8,19 @@ def get_meme():
         response = requests.get('https://meme-api.com/gimme')
         data = response.json()
         #print(data)
-        meme_large = data['preview'][3]
+
+        if('preview' in data):
+            if(len(data['preview']) > 3):
+                meme_large = data['preview'][3]
+            else:
+                index = 2
+                while index >= 0:
+                    meme_large = data['preview'][index]
+                    index -= 1
+                    break  # Break the loop after finding the highest index
+        else:
+            raise Exception("No proper data received")
+
         message = "From: r/"+data['subreddit']
         return meme_large,message
     except:

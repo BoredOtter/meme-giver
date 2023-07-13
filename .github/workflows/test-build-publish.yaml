@@ -39,6 +39,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.upload == 'true' }}
     needs: test
     steps:
 

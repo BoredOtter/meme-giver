@@ -3,5 +3,13 @@
     "platform": "github",
     "repositories": ["BoredOtter/meme-giver"],
     "branchConcurrentLimit": 5,
-    "prConcurrentLimit": 0
+    "prConcurrentLimit": 0,
+    "branch": "dev",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["major", "minor", "patch"],
+            "automerge": true,
+            "enabled": true
+        }
+    ]
 }

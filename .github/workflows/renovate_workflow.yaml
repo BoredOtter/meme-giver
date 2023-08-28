@@ -3,7 +3,6 @@ name: Renovate
 on:
   schedule:
     - cron: "0 8 * * *"
-  push:
   workflow_dispatch:
 
 
@@ -12,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@v39.0.3
         with:

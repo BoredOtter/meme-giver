@@ -4,12 +4,11 @@
     "repositories": ["BoredOtter/meme-giver"],
     "branchConcurrentLimit": 5,
     "prConcurrentLimit": 0,
+    "dependencyDashboard": false,
     "branch": "dev",
     "packageRules": [
         {
-            "matchUpdateTypes": ["major", "minor", "patch"],
-            "automerge": true,
-            "enabled": true
+            "matchUpdateTypes": ["major", "minor", "patch"]
         }
     ]
 }

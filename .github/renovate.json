@@ -2,13 +2,15 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "platform": "github",
     "repositories": ["BoredOtter/meme-giver"],
-    "branchConcurrentLimit": 5,
+    "branchConcurrentLimit": 0,
     "prConcurrentLimit": 0,
-    "dependencyDashboard": false,
-    "branch": "dev",
+    "prHourlyLimit": 0,
+    
     "packageRules": [
         {
-            "matchUpdateTypes": ["major", "minor", "patch"]
+            "matchBaseBranches": ["dev","main"],
+            "matchUpdateTypes": ["major", "minor", "patch"],
+            "matchPaths": ["Dockerfile", "requirements.txt"]
         }
     ]
 }

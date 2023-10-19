@@ -63,4 +63,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: boredotter/meme-giver:latest
+          tags: ksw2137/meme-giver:latest

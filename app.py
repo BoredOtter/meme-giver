@@ -31,7 +31,7 @@ def get_meme():
     except:
         #print("somethings broken")
         meme_large="https://i.kym-cdn.com/photos/images/original/002/028/689/381.jpg"
-        message="something's broken with api (i think), so u can get floppa"
+        message="something's broken with api (i think), so u can get floppa :3"
         return meme_large,message
 
 

@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: meme-giver
+  labels:
+    name: meme-giver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meme-giver
+  namespace: meme-giver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meme-giver
+  template:
+    metadata:
+      labels:
+        app: meme-giver
+    spec:
+      containers:
+      - name: meme-giver
+        image: ksw2137/meme-giver:097b02052b6df0c9986d754e3e09ee10bbb93fe5
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meme-giver
+  namespace: meme-giver
+spec:
+  selector:
+    app: meme-giver
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-cluster-issuer"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  name: meme-giver
+  namespace: meme-giver
+spec:
+  ingressClassName: "nginx"
+  tls:
+  - hosts:
+    - meme.boredotter.dev
+    secretName: meme-giver-tls
+  rules:
+  - host: meme.boredotter.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: meme-giver
+            port:
+              number: 80

@@ -9,6 +9,8 @@ on:
 jobs:
   check-changes:
     runs-on: ubuntu-latest
+    outputs:
+      id: changes
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,8 +25,8 @@ jobs:
 
   cicd:
     needs: check-changes
-    if: needs.check-changes.outputs.app == 'true'
     runs-on: ubuntu-latest
+    if: ${{ needs.check-changes.outputs.changes.app == 'true' }}
     steps:
 
       - name: Checkout repository

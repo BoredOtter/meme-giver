@@ -10,8 +10,18 @@ jobs:
   cicd:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Check for changes
+        id: changes
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            app:
+              - '**'
+              - '!.github/**'
 
       - name: Install Cosign
         uses: sigstore/cosign-installer@v3.3.0

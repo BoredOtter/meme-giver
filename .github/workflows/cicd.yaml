@@ -7,7 +7,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check for changes
+        id: changes
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            app:
+              - '!.github/**'
+
   cicd:
+    needs: check-changes
+    if: needs.check-changes.outputs.app == 'true'
     runs-on: ubuntu-latest
     steps:
 

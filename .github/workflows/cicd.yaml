@@ -49,7 +49,7 @@ jobs:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
 
-      - name: Checkout private tools
+      - name: Checkout manifest repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.MANIFEST_REPO_TOKEN }}
@@ -57,13 +57,7 @@ jobs:
           path: ./manifest
           ref: main
 
-
-      - name: setup Repository
-        working-directory: ./manifest
-        run: |
-          ls -la
-
-      - name: setup Repository
+      - name: Setup Git
         working-directory: ./manifest
         run: |
           git config --global user.name "github-actions[bot]"

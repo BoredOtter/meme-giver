@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-publish-sign:
+  cicd:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -67,9 +67,7 @@ jobs:
       - name: Render manifest template
         working-directory: ./manifest
         run: |
-          mkdir deployment
           export TAG=${{ github.sha }}
-          echo $TAG
           sed "s/__TAG__/$TAG/" manifest-template.yaml > deployment/manifest.yaml
 
       - name: Push updated manifest

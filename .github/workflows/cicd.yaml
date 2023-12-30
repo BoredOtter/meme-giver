@@ -50,11 +50,11 @@ jobs:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
 
       - name: Checkout manifest repository
-      uses: actions/checkout@v2
-      with:
-        repository: BoredOtter/meme-giver-deployment
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: ./manifest
+        uses: actions/checkout@v2
+        with:
+          repository: BoredOtter/meme-giver-deployment
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./manifest
 
       - name: setup Repository
         working-directory: ./manifest

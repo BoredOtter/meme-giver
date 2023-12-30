@@ -67,9 +67,10 @@ jobs:
       - name: Render manifest template
         working-directory: ./manifest
         run: |
+          mkdir deployment
           export TAG=${{ github.sha }}
           echo $TAG
-          sed "s/__TAG__/$TAG/" manifest-template.yaml > manifest.yaml
+          sed "s/__TAG__/$TAG/" manifest-template.yaml > deployment/manifest.yaml
 
       - name: Push updated manifest
         working-directory: ./manifest

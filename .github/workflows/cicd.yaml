@@ -49,11 +49,11 @@ jobs:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
 
-      - name: Checkout manifest repository
-        uses: actions/checkout@v2
+      - name: Checkout private tools
+        uses: actions/checkout@v4
         with:
+          token: ${{ secrets.MANIFEST_REPO_TOKEN }}
           repository: BoredOtter/meme-giver-deployment
-          token: ${{ secrets.GITHUB_TOKEN }}
           path: ./manifest
           ref: main
 

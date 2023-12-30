@@ -10,7 +10,7 @@ jobs:
   check-changes:
     runs-on: ubuntu-latest
     outputs:
-      id: changes
+      changes: ${{ steps.setter.outputs.changes }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,10 +23,16 @@ jobs:
             app:
               - '!.github/**'
 
+      - name: Set outputs
+        id: setter
+        if: steps.changes.outputs.app == 'true'
+        run: |
+          echo "changes=true"  >> $GITHUB_OUTPUT
+
   cicd:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: ${{ needs.check-changes.outputs.changes.app == 'true' }}
+    if: needs.check-changes.outputs.changes == 'true'
     steps:
 
       - name: Checkout repository

@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -38,6 +39,13 @@ def meme():
 def page_not_found(e):
     return render_template("404.html"), 404
 
+@app.route('/k8s')
+def k8s():
+    env_vars = {
+        'HOSTNAME': os.getenv('HOSTNAME'),
+        'KUBERNETES_PORT': os.getenv('KUBERNETES_PORT')
+    }
+    return jsonify(env_vars)
 
 if __name__ == '__main__':
     app.run(debug=False)

@@ -55,6 +55,8 @@ jobs:
           repository: BoredOtter/meme-giver-deployment
           token: ${{ secrets.GITHUB_TOKEN }}
           path: ./manifest
+          ref: main
+
 
       - name: setup Repository
         working-directory: ./manifest

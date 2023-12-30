@@ -52,7 +52,7 @@ jobs:
       - name: Checkout manifest repository
         uses: actions/checkout@v2
         with:
-          repository: BoredOtter/meme-giver-deployment.git
+          repository: https://github.com/BoredOtter/meme-giver-deployment/
           token: ${{ secrets.GITHUB_TOKEN }}
           path: ./manifest
           ref: main

@@ -56,5 +56,5 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: true
+          push: false
           tags: ksw2137/meme-giver-dev:latest

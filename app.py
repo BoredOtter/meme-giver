@@ -8,7 +8,6 @@ def get_meme():
     try:
         response = requests.get('https://meme-api.com/gimme')
         data = response.json()
-        #print(data)
 
         if('preview' in data):
             preview_length = len(data['preview'])

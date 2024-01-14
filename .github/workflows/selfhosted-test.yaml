@@ -1,0 +1,9 @@
+name: Selfhosted Actions Runner
+on:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: gha-runner-0
+    steps:
+    - run: echo "🎉 This job uses runner scale set runners!"

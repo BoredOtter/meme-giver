@@ -3,6 +3,9 @@ name: Trivy
 on:
   workflow_dispatch:
 
+permissions:
+  actions: read
+
 jobs:
   build:
     name: Build

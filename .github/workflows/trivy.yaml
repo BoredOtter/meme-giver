@@ -1,4 +1,4 @@
-name: build
+name: Trivy
 
 on:
   workflow_dispatch:
@@ -13,12 +13,12 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/BoredOtter/meme-giver:${{ github.sha }} .
+          docker build -t docker.io/boredotter/meme-giver:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'docker.io/BoredOtter/meme-giver:${{ github.sha }}'
+          image-ref: 'docker.io/boredotter/meme-giver:${{ github.sha }}'
           format: 'sarif'
           output: 'trivy-results.sarif'
 

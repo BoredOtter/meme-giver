@@ -21,16 +21,18 @@ jobs:
           docker build -t docker.io/boredotter/meme-giver:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action
         with:
           image-ref: 'docker.io/boredotter/meme-giver:${{ github.sha }}'
+          format: 'template'
           template: '@/contrib/html.tpl'
           output: 'trivy-results.html'
           scan-type: 'image'
           vuln-type: 'library'
 
       - name: Upload Trivy scan results as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: trivy-results
+          name: trivy-results.html
           path: trivy-results.html
+          compression: 0

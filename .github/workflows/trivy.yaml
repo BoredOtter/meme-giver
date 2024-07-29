@@ -35,4 +35,3 @@ jobs:
         with:
           name: trivy-results.html
           path: trivy-results.html
-          compression: 0

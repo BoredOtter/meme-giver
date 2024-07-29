@@ -35,3 +35,24 @@ jobs:
           name: ${{ env.TRIVY_OUTPUT }}
           path: ${{ env.TRIVY_OUTPUT }}
           retention-days: 3
+
+      - name: Run Trivy scanner
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: 'docker.io/boredotter/meme-giver:${{ github.sha }}'
+          hide-progress: true
+          output: trivy.txt
+
+      - name: Publish Trivy Output to Summary
+        run: |
+          if [[ -s trivy.txt ]]; then
+            {
+              echo "### Security Output"
+              echo "<details><summary>Click to expand</summary>"
+              echo ""
+              echo '```terraform'
+              cat trivy.txt
+              echo '```'
+              echo "</details>"
+            } >> $GITHUB_STEP_SUMMARY
+          fi
